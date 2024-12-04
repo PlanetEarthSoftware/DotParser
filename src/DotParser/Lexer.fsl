@@ -45,6 +45,10 @@ rule tokenize = parse
 
 and string pos s = parse
 | "\\\""  { string pos (s + "\"") lexbuf }
+| "\\n"   { string pos (s + "\n") lexbuf }
+| "\\l"   { string pos (s + "\n") lexbuf }
+| "\\r"   { string pos (s + "\n") lexbuf }
+| "\\\\"  { string pos (s + "\\") lexbuf }
 | "\\"    { string pos s lexbuf }
 | "\r"    { string pos s lexbuf }
 | "\""    { s }
