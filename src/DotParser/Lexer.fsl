@@ -33,9 +33,9 @@ rule tokenize = parse
 | '['  { LBRACK <| lexeme lexbuf }
 | ']'  { RBRACK <| lexeme lexbuf }
 | '='  { ASSIGN <| lexeme lexbuf }
-| ';'  { SEMI   <| lexeme lexbuf }
 | ':'  { COLON  <| lexeme lexbuf }
-| ','  { COMMA  <| lexeme lexbuf }
+| ';'  { tokenize lexbuf }
+| ','  { tokenize lexbuf }
 | "--" { EDGE   <| lexeme lexbuf }
 | "->" { DIEDGE <| lexeme lexbuf }
 | id   { match keywords.TryFind((lexeme lexbuf).ToLower()) with
